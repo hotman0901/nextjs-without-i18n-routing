@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": ["simple-import-sort", "import"],
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": 0,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "react/no-unescaped-entities": 0
+  }
+}

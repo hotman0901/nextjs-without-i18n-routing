@@ -4,25 +4,54 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "env-dev": "env-cmd -f .env.development next dev",
+    "env-local": "env-cmd -f .env.local next dev",
+    "env-prod": "env-cmd -f .env.production next dev",
     "lint": "eslint src && tsc",
     "test": "playwright test",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "precommit": "echo 'pre-commit checks...' && exit 0",
+    "release": "standard-version"
   },
+  "pre-commit": [
+    "precommit",
+    "lint"
+  ],
   "dependencies": {
-    "next": "^14.2.3",
+    "next": "^14.2.4",
     "next-intl": "latest",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@eslint/compat": "^1.0.3",
+    "@eslint/js": "^9.4.0",
+    "@playwright/test": "^1.44.1",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/lodash": "^4.17.5",
     "@types/node": "^20.14.2",
     "@types/react": "^18.3.3",
-    "@playwright/test": "^1.44.1",
-    "eslint": "^9.4.0",
+    "@types/react-dom": "latest",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "autoprefixer": "latest",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.57.0",
     "eslint-config-molindo": "^7.0.0",
-    "eslint-config-next": "^14.2.3",
-    "typescript": "^5.4.5"
+    "eslint-config-next": "^14.2.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "globals": "^15.4.0",
+    "postcss": "latest",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.3.2",
+    "standard-version": "^9.5.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.0"
   }
 }

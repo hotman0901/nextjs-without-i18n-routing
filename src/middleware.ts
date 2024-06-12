@@ -1,11 +1,12 @@
-import type {NextRequest} from 'next/server';
-import {NextResponse} from 'next/server';
+import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
+// 自定義語系list
 const locales = ['en', 'de'];
 
 export default function middleware(req: NextRequest) {
   const nextUrl = req.nextUrl;
-  const {pathname} = req.nextUrl;
+  const { pathname } = req.nextUrl;
   const locale = nextUrl.searchParams.get('locale') || 'en';
 
   // 如果語系不再白名單內直接給 default en
@@ -23,13 +24,13 @@ export default function middleware(req: NextRequest) {
   requestHeaders.set('x-locale', String(locale));
   const res = NextResponse.next({
     request: {
-      headers: requestHeaders
-    }
+      headers: requestHeaders,
+    },
   });
 
   return res;
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

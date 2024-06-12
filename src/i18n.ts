@@ -1,5 +1,5 @@
-import {headers} from 'next/headers';
-import {getRequestConfig} from 'next-intl/server';
+import { headers } from 'next/headers';
+import { getRequestConfig } from 'next-intl/server';
 
 export default getRequestConfig(async () => {
   // cookies 無法 改用 header
@@ -9,6 +9,6 @@ export default getRequestConfig(async () => {
 
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default
+    messages: (await import(`../messages/${locale}.json`)).default,
   };
 });

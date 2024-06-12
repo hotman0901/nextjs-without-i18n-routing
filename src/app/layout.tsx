@@ -1,12 +1,12 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getLocale, getMessages} from 'next-intl/server';
-import {ReactNode} from 'react';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale, getMessages } from 'next-intl/server';
+import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
 };
 
-export default async function LocaleLayout({children}: Props) {
+export default async function LocaleLayout({ children }: Props) {
   const locale = await getLocale();
   // Providing all messages to the client
   // side is the easiest way to get started
