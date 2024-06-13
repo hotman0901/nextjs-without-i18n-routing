@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import { ReactNode } from 'react';
+import { Toaster } from 'sonner';
 
 import Providers from '@/components/Providers';
 
@@ -23,6 +24,7 @@ export default async function LocaleLayout({ children }: Props) {
       <body>
         <Providers>
           <NextIntlClientProvider messages={messages}>
+            <Toaster />
             {children}
           </NextIntlClientProvider>
         </Providers>
