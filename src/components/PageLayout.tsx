@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import Header from '@/components/Header';
+
 type Props = {
   children?: ReactNode;
   title: string;
@@ -15,6 +17,7 @@ export default function PageLayout({ children, title }: Props) {
           lineHeight: 1.5
         }}
       >
+        <Header />
         <div style={{ maxWidth: 510 }}>
           <h1>{title}</h1>
           {children}

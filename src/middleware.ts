@@ -1,36 +1,12 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
 
-// 自定義語系list
-const locales = ['en', 'de'];
+import { chain } from '@/middlewares/chain';
+import withAuth from '@/middlewares/withAuth';
+import withPublicStatic from '@/middlewares/withPublic';
 
-export default function middleware(req: NextRequest) {
-  const nextUrl = req.nextUrl;
-  const { pathname } = req.nextUrl;
-  const locale = nextUrl.searchParams.get('locale') || 'en';
 
-  // 如果語系不再白名單內直接給 default en
-  if (!locales.includes(locale as any)) {
-    const clone = new URL(req.url);
-    // delete the path parts so all that remains are actual query params from inbound request
-    const params = new URLSearchParams(clone.searchParams);
-    params.set('locale', 'en');
-    const a = pathname === '/' ? '' : pathname;
-    const newUrl = nextUrl.origin + a + '/?' + params.toString();
-    return NextResponse.redirect(new URL(newUrl, req.url));
-  }
+export default chain([withPublicStatic, withAuth ])
 
-  const requestHeaders = new Headers(req.headers);
-  requestHeaders.set('x-locale', String(locale));
-  const res = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
-
-  return res;
-}
-
+// 這幾個忽略
 export const config = {
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
