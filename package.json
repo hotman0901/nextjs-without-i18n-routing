@@ -1,6 +1,6 @@
 {
-  "name": "example-app-router-without-i18n-routing",
-  "version": "2.10.2",
+  "name": "nextjs-without-i18n-routing",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
