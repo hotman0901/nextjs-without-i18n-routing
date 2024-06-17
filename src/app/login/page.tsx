@@ -7,7 +7,10 @@ import { z } from 'zod'
 
 import { loginAction } from '@/actions/login'
 import { loginEntry } from '@/apis/login'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { LoginFormSchema } from '@/schemas/login'
+
 
 
 type Inputs = z.infer<typeof LoginFormSchema>
@@ -59,7 +62,7 @@ export default function Login() {
         action={action}
         className='flex flex-1 flex-col gap-4 sm:w-1/2'
       >
-        <input
+        <Input
           placeholder='name'
           className='rounded-lg'
           {...register('name')}
@@ -68,7 +71,7 @@ export default function Login() {
           <p className='text-sm text-red-400'>{errors.name.message}</p>
         )}
 
-        <input
+        <Input
           placeholder='password'
           className='rounded-lg'
           {...register('password')}
@@ -77,13 +80,12 @@ export default function Login() {
           <p className='text-sm text-red-400'>{errors.password.message}</p>
         )}
 
-        <button disabled={pending} className='rounded-lg bg-black py-2 text-white'>Submit</button>
+        <Button disabled={pending}>Submit</Button>
       </form>
 
       <div className='flex-1 rounded-lg bg-cyan-600 p-8 text-white'>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <pre>{pending ? 'loading...' : JSON.stringify(data, null, 2)}</pre>
       </div>
-      <h1>{pending ? 'loading' : 'finish'}</h1>
     </section>
   )
 }
