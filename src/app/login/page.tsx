@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { loginAction } from '@/actions/login'
 import { loginEntry } from '@/apis/login'
 import { LoginFormSchema } from '@/schemas/login'
 
@@ -23,28 +24,33 @@ export default function Login() {
     resolver: zodResolver(LoginFormSchema)
   })
 
-  const processForm: SubmitHandler<Inputs> = async data => {
-    const result = await loginEntry(data)
+  // const processForm: SubmitHandler<Inputs> = async data => {
+  //   const result = await loginEntry(data)
 
-    if (!result) {
-      console.log('Something went wrong')
-      return
-    }
+  //   if (!result) {
+  //     console.log('Something went wrong')
+  //     return
+  //   }
 
-    if (result.error) {
-      // set local error state
-      console.log(result.error)
-      return
-    }
+  //   if (result.error) {
+  //     // set local error state
+  //     console.log(result.error)
+  //     return
+  //   }
 
-    reset()
-    setData(result.data)
-  }
+  //   reset()
+  //   setData(result.data)
+  // }
+
+  const action: () => void = handleSubmit(async (data) => {
+    const response = await loginAction(data);
+    console.log("🚀 ~ file: page.tsx ~ line 46 ~ constaction: ~ response", response)
+  });
 
   return (
     <section className='flex gap-6'>
       <form
-        onSubmit={handleSubmit(processForm)}
+        action={action}
         className='flex flex-1 flex-col gap-4 sm:w-1/2'
       >
         <input
