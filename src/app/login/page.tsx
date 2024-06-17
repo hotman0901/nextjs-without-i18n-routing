@@ -24,26 +24,28 @@ export default function Login() {
     resolver: zodResolver(LoginFormSchema)
   })
 
-  // const processForm: SubmitHandler<Inputs> = async data => {
-  //   const result = await loginEntry(data)
+  const processForm: SubmitHandler<Inputs> = async data => {
+    const result = await loginEntry(data)
 
-  //   if (!result) {
-  //     console.log('Something went wrong')
-  //     return
-  //   }
+    if (!result) {
+      console.log('Something went wrong')
+      return
+    }
 
-  //   if (result.error) {
-  //     // set local error state
-  //     console.log(result.error)
-  //     return
-  //   }
+    if (result.error) {
+      // set local error state
+      console.log(result.error)
+      return
+    }
 
-  //   reset()
-  //   setData(result.data)
-  // }
+    reset()
+    setData(result.data)
+  }
 
   const action: () => void = handleSubmit(async (data) => {
     const response = await loginAction(data);
+    reset()
+    setData(response?.data)
     console.log("🚀 ~ file: page.tsx ~ line 46 ~ constaction: ~ response", response)
   });
 
