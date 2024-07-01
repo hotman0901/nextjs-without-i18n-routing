@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState, useTransition } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import HashLoader from "react-spinners/HashLoader";
 import { z } from 'zod'
 
 import { loginAction } from '@/actions/login'
@@ -10,6 +11,7 @@ import { loginEntry } from '@/apis/login'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { LoginFormSchema } from '@/schemas/login'
+
 
 
 
@@ -83,8 +85,10 @@ export default function Login() {
         <Button disabled={pending}>Submit</Button>
       </form>
 
-      <div className='flex-1 rounded-lg bg-cyan-600 p-8 text-white'>
-        <pre>{pending ? 'loading...' : JSON.stringify(data, null, 2)}</pre>
+      <div className='flex-1 rounded-lg bg-cyan-800 p-8 text-white'>
+        {
+          pending ? <HashLoader color="#6ebe7d" /> : <pre>{JSON.stringify(data, null, 2)}</pre>
+        }
       </div>
     </section>
   )

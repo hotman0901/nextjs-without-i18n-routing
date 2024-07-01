@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import SimpleParallax from "simple-parallax-js";
 import { toast } from 'sonner';
 
 import PageLayout from '@/components/PageLayout';
@@ -15,11 +17,19 @@ export default function Index() {
 
   return (
     <PageLayout title={t('title')}>
-      <p>{t('description')}</p>
-      <Link href="/about">{t('navigateToAbout')}</Link>
-      <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
-      <Button onClick={() => increase()}>increase</Button>
-      <Button onClick={() => toast.error('hello')}>toast</Button>
+      <div style={{ height: '2000px'}}>
+        <p>{t('description')}</p>
+        <Link href="/about">{t('navigateToAbout')}</Link>
+        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
+        <Button onClick={() => increase()}>increase</Button>
+        <Button onClick={() => toast.error('hello')}>toast</Button>
+        <div style={{ overflow: 'hidden'}}>
+          <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={"/3.webp"} alt={"image"} />
+          </SimpleParallax>
+        </div>
+      </div>
     </PageLayout>
   );
 }
