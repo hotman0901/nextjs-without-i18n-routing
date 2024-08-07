@@ -1,8 +1,9 @@
 'use client';
-
+import { VFX } from '@vfx-js/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useEffect, useRef } from 'react';
 import SimpleParallax from "simple-parallax-js";
 import { toast } from 'sonner';
 
@@ -15,6 +16,17 @@ export default function Index() {
   const bears = useBearStore((state) => state.bears);
   const increase = useBearStore((state) => state.increase);
 
+  const img = useRef(null);
+  useEffect(() => {
+    console.log('====================================');
+    console.log(img.current);
+    console.log('====================================');
+    const vfx = new VFX();
+    if (img.current) {
+      vfx.add(img.current, { shader: "rgbShift", overflow: 100 });
+    }
+            
+  },[])
   return (
     <PageLayout title={t('title')}>
       <div style={{ height: '2000px'}}>
@@ -26,9 +38,10 @@ export default function Index() {
         <div style={{ overflow: 'hidden'}}>
           <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={"/3.webp"} alt={"image"} />
+            <img src={"/3.webp"} alt={"image"}  />
           </SimpleParallax>
         </div>
+        <img src={"/3.webp"} alt={"image"} ref={img} />
       </div>
     </PageLayout>
   );
