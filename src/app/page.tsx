@@ -18,14 +18,10 @@ export default function Index() {
 
   const img = useRef(null);
   useEffect(() => {
-    console.log('====================================');
-    console.log(img.current);
-    console.log('====================================');
     const vfx = new VFX();
     if (img.current) {
       vfx.add(img.current, { shader: "rgbShift", overflow: 100 });
     }
-            
   },[])
   return (
     <PageLayout title={t('title')}>
