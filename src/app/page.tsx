@@ -37,6 +37,7 @@ export default function Index() {
             <img src={"/3.webp"} alt={"image"}  />
           </SimpleParallax>
         </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={"/3.webp"} alt={"image"} ref={img} />
       </div>
     </PageLayout>
