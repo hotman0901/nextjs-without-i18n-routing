@@ -6,8 +6,8 @@ import { CustomMiddleware } from '@/middlewares/chain'
 
 export default function withAuth(middleware: CustomMiddleware) {
   return async (request: NextRequest, event: NextFetchEvent) => {
-    const cookieStore = cookies();
-    const token = cookieStore.get(COOKIES.TOKEN);
+    const cookieStore = await cookies();
+    const token = cookieStore?.get(COOKIES.TOKEN);
     const response = NextResponse.next();
     return middleware(request, event, response);
   };
