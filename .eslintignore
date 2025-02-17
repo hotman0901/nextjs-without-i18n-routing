@@ -1,8 +1,0 @@
-src/styles/*
-node_modules/*
-public/*
-build/*
-.next/*
-config/*
-.vscode/*
-static/*.js

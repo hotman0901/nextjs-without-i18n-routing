@@ -1,6 +1,6 @@
 'use client';
 import { VFX } from '@vfx-js/core';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
@@ -22,19 +22,19 @@ export default function Index() {
     if (img.current) {
       vfx.add(img.current, { shader: "rgbShift", overflow: 100 });
     }
-  },[])
+  }, [])
   return (
     <PageLayout title={t('title')}>
-      <div style={{ height: '2000px'}}>
+      <div style={{ height: '2000px' }}>
         <p>{t('description')}</p>
         <Link href="/about">{t('navigateToAbout')}</Link>
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
         <Button onClick={() => increase()}>increase</Button>
         <Button onClick={() => toast.error('hello')}>toast</Button>
-        <div style={{ overflow: 'hidden'}}>
+        <div style={{ overflow: 'hidden' }}>
           <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={"/3.webp"} alt={"image"}  />
+            <img src={"/3.webp"} alt={"image"} />
           </SimpleParallax>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}

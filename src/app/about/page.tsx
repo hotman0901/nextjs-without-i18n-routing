@@ -1,6 +1,7 @@
 "use client"
 import { enableReactComponents } from "@legendapp/state/config/enableReactComponents"
-import { Memo, Reactive, Show,useObservable, useObserve } from "@legendapp/state/react"
+import { Memo, Show, useObservable, useObserve } from "@legendapp/state/react"
+import { $React } from "@legendapp/state/react-web"
 import { useTranslations } from 'next-intl';
 import { useRef } from "react"
 
@@ -10,9 +11,6 @@ enableReactComponents()
 export default function App() {
   const t = useTranslations('About');
   const renderCount = useRef(0).current
-  console.log('====================================');
-  console.log(123);
-  console.log('====================================');
   const username$ = useObservable('')
   const password$ = useObservable('')
   const usernameError$ = useObservable('')
@@ -53,7 +51,7 @@ export default function App() {
       <p>{t('description')}</p>
       <div>Renders: {renderCount}</div>
       <div>Username:</div>
-      <Reactive.input
+      <$React.input
         className="input"
         $value={username$}
       />
@@ -61,7 +59,7 @@ export default function App() {
         <Memo>{usernameError$}</Memo>
       </div>
       <div>Password:</div>
-      <Reactive.input
+      <$React.input
         type="password"
         className="input"
         $value={password$}

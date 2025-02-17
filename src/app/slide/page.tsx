@@ -3,12 +3,12 @@ import '@egjs/react-flicking/dist/flicking.css';
 import "@egjs/react-flicking/dist/flicking-inline.css";
 
 import Flicking from '@egjs/react-flicking';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 
 // import PageLayout from '@/components/PageLayout';
 
 export default function App() {
-  const t = useTranslations('About');
+  // const t = useTranslations('About');
 
   return (
     <Flicking
