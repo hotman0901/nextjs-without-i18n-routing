@@ -4,11 +4,11 @@ import { VFX } from '@vfx-js/core';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef } from 'react';
-import SimpleParallax from "simple-parallax-js";
+import SimpleParallax from 'simple-parallax-js';
 import { toast } from 'sonner';
 
 import PageLayout from '@/components/PageLayout';
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button'
 import { useBearStore } from '@/store/count';
 
 export default function Index() {
@@ -20,7 +20,7 @@ export default function Index() {
   useEffect(() => {
     const vfx = new VFX();
     if (img.current) {
-      vfx.add(img.current, { shader: "rgbShift", overflow: 100 });
+      vfx.add(img.current, { shader: 'rgbShift', overflow: 100 });
     }
   }, [])
   return (
@@ -34,11 +34,11 @@ export default function Index() {
         <div style={{ overflow: 'hidden' }}>
           <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={"/3.webp"} alt={"image"} />
+            <img src={'/3.webp'} alt={'image'} />
           </SimpleParallax>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={"/3.webp"} alt={"image"} ref={img} />
+        <img src={'/3.webp'} alt={'image'} ref={img} />
       </div>
     </PageLayout>
   );

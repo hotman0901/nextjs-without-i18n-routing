@@ -1,6 +1,6 @@
 'use client';
 import '@egjs/react-flicking/dist/flicking.css';
-import "@egjs/react-flicking/dist/flicking-inline.css";
+import '@egjs/react-flicking/dist/flicking-inline.css';
 
 import Flicking from '@egjs/react-flicking';
 // import { useTranslations } from 'next-intl';

@@ -1,9 +1,9 @@
-"use client"
-import { enableReactComponents } from "@legendapp/state/config/enableReactComponents"
-import { Memo, Show, useObservable, useObserve } from "@legendapp/state/react"
-import { $React } from "@legendapp/state/react-web"
+'use client'
+import { enableReactComponents } from '@legendapp/state/config/enableReactComponents'
+import { Memo, Show, useObservable, useObserve } from '@legendapp/state/react'
+import { $React } from '@legendapp/state/react-web'
 import { useTranslations } from 'next-intl';
-import { useRef } from "react"
+import { useRef } from 'react'
 
 import PageLayout from '@/components/PageLayout';
 

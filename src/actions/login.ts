@@ -11,7 +11,7 @@ type Inputs = z.infer<typeof LoginFormSchema>
 export const loginAction = async (data: Inputs) => {
   // 這邊邏輯可以用 call server api
   const result = LoginFormSchema.safeParse(data)
-  console.log("🚀 ~ server actions~~~", result)
+  console.log('🚀 ~ server actions~~~', result)
 
   await wait(2000);
 

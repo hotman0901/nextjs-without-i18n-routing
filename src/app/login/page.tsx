@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import HashLoader from "react-spinners/HashLoader";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState, useTransition } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import HashLoader from 'react-spinners/HashLoader';
+import { z } from 'zod';
 
-import { loginAction } from "@/actions/login";
-import { loginEntry } from "@/apis/login";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { LoginFormSchema } from "@/schemas/login";
+import { loginAction } from '@/actions/login';
+import { loginEntry } from '@/apis/login';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { LoginFormSchema } from '@/schemas/login';
 
 type Inputs = z.infer<typeof LoginFormSchema>;
 
@@ -33,7 +33,7 @@ export default function Login() {
     const result = await loginEntry(data);
 
     if (!result) {
-      console.log("Something went wrong");
+      console.log('Something went wrong');
       return;
     }
 
@@ -53,7 +53,7 @@ export default function Login() {
       reset();
       setData(response?.data);
       console.log(
-        "🚀 ~ file: page.tsx ~ line 46 ~ constaction: ~ response",
+        '🚀 ~ file: page.tsx ~ line 46 ~ constaction: ~ response',
         response,
       );
     });
@@ -65,7 +65,7 @@ export default function Login() {
         <Input
           placeholder="name"
           className="rounded-lg"
-          {...register("name")}
+          {...register('name')}
         />
         {errors.name?.message && (
           <p className="text-sm text-red-400">{errors.name.message}</p>
@@ -74,7 +74,7 @@ export default function Login() {
         <Input
           placeholder="password"
           className="rounded-lg"
-          {...register("password")}
+          {...register('password')}
         />
         {errors.password?.message && (
           <p className="text-sm text-red-400">{errors.password.message}</p>
