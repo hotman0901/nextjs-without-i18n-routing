@@ -1,7 +1,7 @@
 
 import { chain } from '@/middlewares/chain';
 import withAuth from '@/middlewares/withAuth';
-import withPublicStatic from '@/middlewares/withPublic';
+import withPublicStatic from '@/middlewares/withPublic'
 
 
 export default chain([withPublicStatic, withAuth ])
