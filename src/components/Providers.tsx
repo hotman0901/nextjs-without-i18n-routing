@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 // onblur 畫面不要觸發重新 call api
 focusManager.setFocused(false);

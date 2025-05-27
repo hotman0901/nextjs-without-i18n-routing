@@ -20,15 +20,14 @@ export default [
   ...compat.extends('next/core-web-vitals'),
   ...compat.extends('prettier'),
   ...tseslint.configs.recommended,
-  {
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-    },
+  ...compat.config({
+    extends: ['eslint:recommended', 'next'],
     rules: {
+      'react/no-unescaped-entities': 'off',
+      '@next/next/no-page-custom-font': 'off',
       'react-hooks/rules-of-hooks': 0,
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'react/no-unescaped-entities': 0,
       '@typescript-eslint/no-explicit-any': 'error',
       'no-console': 1,
       'comma-dangle': 0,
@@ -41,5 +40,13 @@ export default [
         },
       ],
     },
+  }),
+  {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
+    // rules: {
+      
+    // },
   },
 ];
