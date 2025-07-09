@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { Inter as FontSans } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 
@@ -40,7 +41,7 @@ export default async function LocaleLayout({ children }: Props) {
         <Providers>
           <NextIntlClientProvider messages={messages}>
             <Toaster />
-            {children}
+            <NuqsAdapter>{children}</NuqsAdapter>
           </NextIntlClientProvider>
         </Providers>
       </body>
