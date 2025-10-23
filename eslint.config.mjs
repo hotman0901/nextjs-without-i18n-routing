@@ -1,30 +1,35 @@
-/* eslint-disable import/no-anonymous-default-export */
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-// import _import from 'eslint-plugin-import';
+import nextPlugin from '@next/eslint-plugin-next';
+import prettier from 'eslint-config-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
 export default [
-  ...compat.extends('next/core-web-vitals'),
-  ...compat.extends('prettier'),
+  // 🧱 JavaScript 基本建議規則
+  js.configs.recommended,
+
+  // 🧩 TypeScript 推薦設定
   ...tseslint.configs.recommended,
-  ...compat.config({
-    extends: ['eslint:recommended', 'next'],
+
+  // 🧭 Next.js Plugin
+  {
+    plugins: { '@next/next': nextPlugin },
+    rules: {
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      '@next/next/no-page-custom-font': 'off',
+    },
+  },
+
+  // 🎨 Prettier (關閉與格式化衝突的規則)
+  prettier,
+
+  // 📦 你的自訂規則
+  {
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
     rules: {
       'react/no-unescaped-entities': 'off',
-      '@next/next/no-page-custom-font': 'off',
       'react-hooks/rules-of-hooks': 0,
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
@@ -40,13 +45,5 @@ export default [
         },
       ],
     },
-  }),
-  {
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-    },
-    // rules: {
-      
-    // },
   },
 ];
