@@ -1,5 +1,5 @@
 'use client';
-import { setCookie } from 'cookies-next';
+import { getCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation'
 
 // import Link from "next/link";
@@ -9,8 +9,11 @@ import { Button } from '@/components/ui/button'
 export default function Header() {
   const router = useRouter()
   const changeLanguage = (lan: string) => {
-    setCookie('x-locale', lan)
-    router.refresh()
+    const oldLan = getCookie('x-locale')
+    if (lan !== oldLan) {
+      setCookie('x-locale', lan)
+      router.refresh()
+    }
   }
 
   return (
