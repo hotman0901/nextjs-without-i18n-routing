@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Importing create function from the Zustand library
 import { create } from 'zustand';

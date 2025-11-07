@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { NextMiddlewareResult } from 'next/dist/server/web/types'
 import type { NextFetchEvent, NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
