@@ -34,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "middleware.hs"
+    "middleware.hs",
+    "global.d.ts"
   ],
   "exclude": [
     "node_modules"
