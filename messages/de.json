@@ -13,5 +13,9 @@
     "title": "Etwas ist schiefgelaufen",
     "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.",
     "retry": "Erneut versuchen"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "description": "Diese Seite ist geschützt. Du siehst sie nur mit einem Token."
   }
 }
