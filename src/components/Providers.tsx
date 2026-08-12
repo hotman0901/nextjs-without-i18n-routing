@@ -12,9 +12,9 @@ import React, { useState } from 'react';
 focusManager.setFocused(false);
 
 function Providers({ children }: React.PropsWithChildren) {
+  // 必須用 lazy initializer，否則每次 render 都會建立一個新的 QueryClient
   const [client] = useState(
-    new QueryClient({ defaultOptions: { queries: { staleTime: 5000 } } }),
-    // new QueryClient()
+    () => new QueryClient({ defaultOptions: { queries: { staleTime: 5000 } } }),
   );
   return (
     <QueryClientProvider client={client}>

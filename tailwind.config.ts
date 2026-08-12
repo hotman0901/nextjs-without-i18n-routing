@@ -16,6 +16,10 @@ const config = {
       },
     },
     extend: {
+      // layout.tsx 透過 next/font 設定 --font-sans，這裡要對應才會生效
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

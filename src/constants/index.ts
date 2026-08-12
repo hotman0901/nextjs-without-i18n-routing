@@ -1,8 +1,6 @@
-export const COOKIE_NAME = 'tokenJWT';
-
 export const COOKIES = {
   TOKEN: 'tokenJWT',
-  LOCALE: 'Next-Locale',
+  LOCALE: 'x-locale',
 };
 
 export const API = {

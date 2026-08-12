@@ -15,8 +15,11 @@ const config: PlaywrightTestConfig = {
     }
   ],
   fullyParallel: true,
+  use: {
+    baseURL: `http://localhost:${PORT}`
+  },
   webServer: {
-    command: `PORT=${PORT} pnpm start`,
+    command: `PORT=${PORT} yarn start`,
     port: PORT,
     reuseExistingServer: true
   }

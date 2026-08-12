@@ -72,6 +72,7 @@ export default function Login() {
         )}
 
         <Input
+          type="password"
           placeholder="password"
           className="rounded-lg"
           {...register('password')}

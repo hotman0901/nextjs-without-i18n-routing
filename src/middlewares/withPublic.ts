@@ -1,18 +1,20 @@
 import type { NextFetchEvent, NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const PUBLIC_FILE = /\.(.*)$/;
 import { CustomMiddleware } from '@/middlewares/chain';
 
-export default function withAuth(middleware: CustomMiddleware) {
+const PUBLIC_FILE = /\.(.*)$/;
+
+export default function withPublicStatic(middleware: CustomMiddleware) {
   return async (req: NextRequest, event: NextFetchEvent) => {
     const response = NextResponse.next();
+    // 靜態資源與 api 直接放行，不進入後續 middleware
     if (
       req.nextUrl.pathname.startsWith('/_next') ||
       req.nextUrl.pathname.includes('/api/') ||
       PUBLIC_FILE.test(req.nextUrl.pathname)
     ) {
-      return;
+      return response;
     }
     return middleware(req, event, response);
   };

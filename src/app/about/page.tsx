@@ -28,7 +28,7 @@ export default function App() {
       passwordError$.set(
         pass.length < 10 ?
           'Password must be > 10 characters' :
-          !pass.match(/d/) ?
+          !pass.match(/\d/) ?
             'Password must include a number' :
             ''
       )

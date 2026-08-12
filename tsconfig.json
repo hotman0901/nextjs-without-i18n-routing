@@ -34,7 +34,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "middleware.hs",
     "global.d.ts"
   ],
   "exclude": [

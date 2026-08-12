@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 
+import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
@@ -20,6 +21,10 @@ type Props = {
   children: ReactNode;
 };
 
+export const metadata: Metadata = {
+  title: 'next-intl',
+};
+
 export default async function LocaleLayout({ children }: Props) {
   // i18n.ts 這邊有塞語系
   const locale = await getLocale();
@@ -29,9 +34,6 @@ export default async function LocaleLayout({ children }: Props) {
 
   return (
     <html lang={locale}>
-      <head>
-        <title>next-intl</title>
-      </head>
       <body
           className={cn(
           'min-h-screen bg-background font-sans antialiased',
@@ -39,7 +41,7 @@ export default async function LocaleLayout({ children }: Props) {
         )}
       >
         <Providers>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <Toaster />
             <NuqsAdapter>{children}</NuqsAdapter>
           </NextIntlClientProvider>
