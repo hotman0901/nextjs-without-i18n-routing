@@ -2,60 +2,41 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useTransition } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import HashLoader from 'react-spinners/HashLoader';
-import { z } from 'zod';
 
 import { loginAction } from '@/actions/login';
-import { loginEntry } from '@/apis/login';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { LoginFormSchema } from '@/schemas/login';
-
-type Inputs = z.infer<typeof LoginFormSchema>;
+import { LoginFormSchema,type LoginInputs } from '@/schemas/login';
 
 export default function Login() {
-  const [data, setData] = useState<Inputs>();
+  const [data, setData] = useState<LoginInputs>();
+  const [serverError, setServerError] = useState<string>();
   const [pending, startTransition] = useTransition();
 
   const {
     register,
     handleSubmit,
-    // watch,
     reset,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<LoginInputs>({
     resolver: zodResolver(LoginFormSchema),
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const processForm: SubmitHandler<Inputs> = async (data) => {
-    const result = await loginEntry(data);
-
-    if (!result) {
-      console.log('Something went wrong');
-      return;
-    }
-
-    if (result.error) {
-      // set local error state
-      console.log(result.error);
-      return;
-    }
-
-    reset();
-    setData(result.data);
-  };
-
-  const action: () => void = handleSubmit(async (data) => {
+  const action: () => void = handleSubmit((values) => {
     startTransition(async () => {
-      const response = await loginAction(data);
+      const response = await loginAction(values);
+
+      // client 已經驗過一次，這裡擋的是繞過表單直接呼叫 action 的情況
+      if (!response.success) {
+        setServerError(response.error.errors.join(', ') || 'Invalid input');
+        return;
+      }
+
+      setServerError(undefined);
       reset();
-      setData(response?.data);
-      console.log(
-        '🚀 ~ file: page.tsx ~ line 46 ~ constaction: ~ response',
-        response,
-      );
+      setData(response.data);
     });
   });
 
@@ -79,6 +60,10 @@ export default function Login() {
         />
         {errors.password?.message && (
           <p className="text-sm text-red-400">{errors.password.message}</p>
+        )}
+
+        {serverError && (
+          <p className="text-sm text-red-400">{serverError}</p>
         )}
 
         <Button disabled={pending}>Submit</Button>
