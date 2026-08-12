@@ -10,22 +10,28 @@ export type CustomMiddleware = (
 
 type MiddlewareFactory = (middleware: CustomMiddleware) => CustomMiddleware
 
-export function chain(
+function compose(
   functions: MiddlewareFactory[],
   index = 0
 ): CustomMiddleware {
   const current = functions[index]
 
   if (current) {
-    const next = chain(functions, index + 1)
+    const next = compose(functions, index + 1)
     return current(next)
   }
 
-  return (
-    request: NextRequest,
-    event: NextFetchEvent,
-    response: NextResponse
-  ) => {
-    return response
-  }
+  // 鏈的終點：回傳一路傳遞下來的 response
+  return (request, event, response) => response
+}
+
+/**
+ * Next 只會傳入 (request, event)，所以初始的 response 由這裡建立一次，
+ * 再沿著整條鏈傳遞 — 每一層對它做的修改才不會被下一層丟掉。
+ */
+export function chain(functions: MiddlewareFactory[]) {
+  const middleware = compose(functions)
+
+  return (request: NextRequest, event: NextFetchEvent) =>
+    middleware(request, event, NextResponse.next())
 }
