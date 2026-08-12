@@ -9,6 +9,9 @@
     "description": "Das ist die Über-uns-Seite."
   },
   "Error": {
-    "404": "ERROR 404"
+    "404": "ERROR 404",
+    "title": "Etwas ist schiefgelaufen",
+    "description": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut.",
+    "retry": "Erneut versuchen"
   }
 }

@@ -9,6 +9,9 @@
     "description": "This is the about page."
   },
   "Error": {
-    "404": "NOT FOUND 404"
+    "404": "NOT FOUND 404",
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "retry": "Try again"
   }
 }
