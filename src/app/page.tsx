@@ -29,8 +29,10 @@ export default function Index() {
         <p>{t('description')}</p>
         <Link href="/about">{t('navigateToAbout')}</Link>
         <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
-        <Button onClick={() => increase()}>increase</Button>
-        <Button onClick={() => toast.error('hello')}>toast</Button>
+        <Button onClick={() => increase()}>{t('increase')}</Button>
+        <Button onClick={() => toast.error(t('showToast'))}>
+          {t('showToast')}
+        </Button>
         <div style={{ overflow: 'hidden' }}>
           <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -6,7 +6,9 @@
   "Index": {
     "title": "Home",
     "description": "This is the home page.",
-    "navigateToAbout": "Navigate to about"
+    "navigateToAbout": "Navigate to about",
+    "increase": "increase",
+    "showToast": "show toast"
   },
   "About": {
     "title": "About",
@@ -20,6 +22,30 @@
   },
   "Dashboard": {
     "title": "Dashboard",
-    "description": "This page is protected. You only see it with a token."
+    "description": "This page is protected. You only see it with a token.",
+    "welcome": "Signed in as {name}",
+    "profileError": "Could not load the profile."
+  },
+  "Common": {
+    "home": "Home",
+    "about": "About",
+    "dashboard": "Dashboard",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "loading": "Loading…"
+  },
+  "Auth": {
+    "title": "Sign in",
+    "name": "Name",
+    "password": "Password",
+    "submit": "Sign in",
+    "hint": "Any name up to 6 characters and a password of at least 6 characters works."
+  },
+  "Validation": {
+    "nameRequired": "Name is required",
+    "nameTooLong": "The name is too long",
+    "passwordRequired": "This field is required",
+    "passwordNotAString": "Not a string",
+    "passwordTooShort": "Password must be at least 6 characters"
   }
 }

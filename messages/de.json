@@ -6,7 +6,9 @@
   "Index": {
     "title": "Start",
     "description": "Das ist die Startseite.",
-    "navigateToAbout": "Zu Über uns navigieren"
+    "navigateToAbout": "Zu Über uns navigieren",
+    "increase": "erhöhen",
+    "showToast": "Toast anzeigen"
   },
   "About": {
     "title": "Über",
@@ -20,6 +22,30 @@
   },
   "Dashboard": {
     "title": "Dashboard",
-    "description": "Diese Seite ist geschützt. Du siehst sie nur mit einem Token."
+    "description": "Diese Seite ist geschützt. Du siehst sie nur mit einem Token.",
+    "welcome": "Angemeldet als {name}",
+    "profileError": "Das Profil konnte nicht geladen werden."
+  },
+  "Common": {
+    "home": "Start",
+    "about": "Über",
+    "dashboard": "Dashboard",
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "loading": "Lädt…"
+  },
+  "Auth": {
+    "title": "Anmelden",
+    "name": "Name",
+    "password": "Passwort",
+    "submit": "Anmelden",
+    "hint": "Ein Name mit bis zu 6 Zeichen und ein Passwort mit mindestens 6 Zeichen funktionieren."
+  },
+  "Validation": {
+    "nameRequired": "Name ist erforderlich",
+    "nameTooLong": "Der Name ist zu lang",
+    "passwordRequired": "Dieses Feld ist erforderlich",
+    "passwordNotAString": "Kein Text",
+    "passwordTooShort": "Das Passwort muss mindestens 6 Zeichen lang sein"
   }
 }

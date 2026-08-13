@@ -1,51 +1,58 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState, useTransition } from 'react';
+import { useTranslations } from 'next-intl';
+import { useMemo,useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
-import HashLoader from 'react-spinners/HashLoader';
 
 import { loginAction } from '@/actions/login';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { LoginFormSchema,type LoginInputs } from '@/schemas/login';
+import { createLoginSchema,type LoginInputs } from '@/schemas/login';
 
 export default function Login() {
-  const [data, setData] = useState<LoginInputs>();
+  const t = useTranslations('Auth');
+  const tValidation = useTranslations('Validation');
+
   const [serverError, setServerError] = useState<string>();
   const [pending, startTransition] = useTransition();
+
+  // schema 帶著翻譯建立，錯誤訊息才會跟著語系走
+  const schema = useMemo(
+    () => createLoginSchema(tValidation),
+    [tValidation]
+  );
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<LoginInputs>({
-    resolver: zodResolver(LoginFormSchema),
+    resolver: zodResolver(schema),
   });
 
   const action: () => void = handleSubmit((values) => {
     startTransition(async () => {
+      // 成功時 action 會設定 cookie 並導向 /dashboard，不會回傳
       const response = await loginAction(values);
 
-      // client 已經驗過一次，這裡擋的是繞過表單直接呼叫 action 的情況
-      if (!response.success) {
-        setServerError(response.error.errors.join(', ') || 'Invalid input');
-        return;
+      if (response && !response.success) {
+        setServerError(response.error.errors.join(', ') || t('title'));
       }
-
-      setServerError(undefined);
-      reset();
-      setData(response.data);
     });
   });
 
   return (
-    <section className="flex gap-6">
-      <form action={action} className="flex flex-1 flex-col gap-4 sm:w-1/2">
+    <section className="mx-auto flex max-w-sm flex-col gap-6 p-6">
+      <div>
+        <h1 className="text-2xl font-semibold">{t('title')}</h1>
+        <p className="text-sm text-muted-foreground">{t('hint')}</p>
+      </div>
+
+      <form action={action} className="flex flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="name">Name</Label>
+          <Label htmlFor="name">{t('name')}</Label>
           <Input
             id="name"
             className="rounded-lg"
@@ -61,7 +68,7 @@ export default function Login() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="password">Password</Label>
+          <Label htmlFor="password">{t('password')}</Label>
           <Input
             id="password"
             type="password"
@@ -81,16 +88,8 @@ export default function Login() {
           <p role="alert" className="text-sm text-red-400">{serverError}</p>
         )}
 
-        <Button disabled={pending}>Submit</Button>
+        <Button disabled={pending}>{t('submit')}</Button>
       </form>
-
-      <div className="flex-1 rounded-lg bg-cyan-800 p-8 text-white">
-        {pending ? (
-          <HashLoader color="#6ebe7d" />
-        ) : (
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        )}
-      </div>
     </section>
   );
 }
