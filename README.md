@@ -49,6 +49,11 @@ yarn dev
 src/
 ├─ actions/        Server Actions（locale 切換、登入、登出）
 ├─ app/            App Router 頁面
+│  ├─ page.tsx        首頁＝登入頁（唯一的公開路徑）
+│  ├─ dashboard/      登入後的主畫面
+│  ├─ demo/           zustand / parallax / toast 等套件示範
+│  ├─ about/          @legendapp/state 示範
+│  ├─ slide/          輪播示範
 │  ├─ api/profile/    Route Handler 範例（受 token 保護）
 │  ├─ error.tsx        錯誤邊界
 │  ├─ global-error.tsx root layout 出錯時的邊界
@@ -97,13 +102,21 @@ const schema = useMemo(() => createLoginSchema(tValidation), [tValidation]);
 
 ## 認證流程
 
+**預設全站需要登入。** 首頁 `/` 就是登入頁，也是唯一的公開路徑；其餘任何網址在沒有 token 的情況下一律導回首頁。
+
+要開放某個路徑，把它加進 [`PUBLIC_ROUTES`](src/constants/index.ts)：
+
+```ts
+export const PUBLIC_ROUTES: string[] = [ROUTES.LOGIN];
+```
+
 完整的一圈：
 
-1. `/login` 送出表單 → Server Action [`loginAction`](src/actions/login.ts) 驗證
+1. `/` 送出表單 → Server Action [`loginAction`](src/actions/login.ts) 驗證
 2. 驗證通過 → 寫入 `httpOnly` 的 `tokenJWT` cookie → `redirect('/dashboard')`
-3. [`withAuth`](src/middlewares/withAuth.ts) 檢查每個符合 [`PROTECTED_URL`](src/constants/index.ts) 的請求，沒有 token 就導回 `/login`
+3. [`withAuth`](src/middlewares/withAuth.ts) 檢查每個請求：不在 `PUBLIC_ROUTES` 又沒有 token 就導回 `/`；反過來，已登入還停在登入頁則直接送進 `/dashboard`
 4. `/dashboard` 用 react-query 打 [`/api/profile`](src/app/api/profile/route.ts) 取回使用者資料
-5. 登出 → [`logoutAction`](src/actions/logout.ts) 刪除 cookie 並導回 `/login`
+5. 登出 → [`logoutAction`](src/actions/logout.ts) 刪除 cookie 並導回 `/`
 
 token 是假的（格式為 `fake-jwt-for-{name}`），真實專案請換成後端簽發的 JWT 並驗證簽章。cookie 設為 `httpOnly`，所以 client 端的 JavaScript 讀不到。
 

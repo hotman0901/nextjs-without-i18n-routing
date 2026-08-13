@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { createLoginSchema,type LoginInputs } from '@/schemas/login';
 
-export default function Login() {
+export default function LoginForm() {
   const t = useTranslations('Auth');
   const tValidation = useTranslations('Validation');
 

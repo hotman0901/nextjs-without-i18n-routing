@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import wait from 'waait';
 
-import { COOKIES, PROTECTED_URL } from '@/constants'
+import { COOKIES, ROUTES } from '@/constants'
 import { type LoginInputs, type LoginResult,validateLogin } from '@/schemas/login'
 
 export const loginAction = async (
@@ -36,5 +36,5 @@ export const loginAction = async (
   });
 
   // redirect 會 throw，所以要放在所有回傳之後
-  redirect(PROTECTED_URL.DASHBOARD);
+  redirect(ROUTES.DASHBOARD);
 }

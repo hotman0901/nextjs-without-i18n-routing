@@ -3,7 +3,7 @@
     "title": "Next.js i18n Starter",
     "description": "Ein Next.js App Router Starter mit Sprachumschaltung über Cookies, ohne [locale]-Segment in der URL."
   },
-  "Index": {
+  "Demo": {
     "title": "Start",
     "description": "Das ist die Startseite.",
     "navigateToAbout": "Zu Über uns navigieren",
@@ -32,7 +32,9 @@
     "dashboard": "Dashboard",
     "signIn": "Anmelden",
     "signOut": "Abmelden",
-    "loading": "Lädt…"
+    "loading": "Lädt…",
+    "demo": "Demo",
+    "changeLanguage": "Sprache"
   },
   "Auth": {
     "title": "Anmelden",

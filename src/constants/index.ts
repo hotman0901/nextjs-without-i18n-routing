@@ -8,10 +8,13 @@ export const API = {
 };
 
 export const ROUTES = {
-  LOGIN: '/login',
-};
-
-// 這些路徑（含子路徑）沒有 token 時會被導向 ROUTES.LOGIN
-export const PROTECTED_URL = {
+  // 首頁就是登入頁
+  LOGIN: '/',
   DASHBOARD: '/dashboard',
 };
+
+/**
+ * 預設全部需要登入。只有這裡列出的路徑可以在沒有 token 的情況下瀏覽，
+ * 其餘一律導向 ROUTES.LOGIN。
+ */
+export const PUBLIC_ROUTES: string[] = [ROUTES.LOGIN];

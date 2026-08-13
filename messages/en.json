@@ -3,7 +3,7 @@
     "title": "Next.js i18n Starter",
     "description": "A Next.js App Router starter with cookie-based locale switching, no [locale] segment in the URL."
   },
-  "Index": {
+  "Demo": {
     "title": "Home",
     "description": "This is the home page.",
     "navigateToAbout": "Navigate to about",
@@ -32,7 +32,9 @@
     "dashboard": "Dashboard",
     "signIn": "Sign in",
     "signOut": "Sign out",
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "demo": "Demo",
+    "changeLanguage": "Language"
   },
   "Auth": {
     "title": "Sign in",

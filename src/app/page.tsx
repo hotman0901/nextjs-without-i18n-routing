@@ -1,47 +1,17 @@
-'use client';
-import { VFX } from '@vfx-js/core';
-// import Image from 'next/image';
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { useEffect, useRef } from 'react';
-import SimpleParallax from 'simple-parallax-js';
-import { toast } from 'sonner';
+import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
-import PageLayout from '@/components/PageLayout';
-import { Button } from '@/components/ui/button'
-import { useBearStore } from '@/store/count';
+import LoginForm from '@/components/LoginForm';
 
-export default function Index() {
-  const t = useTranslations('Index');
-  const bears = useBearStore((state) => state.bears);
-  const increase = useBearStore((state) => state.increase);
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('Auth');
 
-  const img = useRef(null);
-  useEffect(() => {
-    const vfx = new VFX();
-    if (img.current) {
-      vfx.add(img.current, { shader: 'rgbShift', overflow: 100 });
-    }
-  }, [])
-  return (
-    <PageLayout title={t('title')}>
-      <div style={{ height: '2000px' }}>
-        <p>{t('description')}</p>
-        <Link href="/about">{t('navigateToAbout')}</Link>
-        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
-        <Button onClick={() => increase()}>{t('increase')}</Button>
-        <Button onClick={() => toast.error(t('showToast'))}>
-          {t('showToast')}
-        </Button>
-        <div style={{ overflow: 'hidden' }}>
-          <SimpleParallax delay={1} transition="cubic-bezier(0,0,0,1)" overflow>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={'/3.webp'} alt={'image'} />
-          </SimpleParallax>
-        </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={'/3.webp'} alt={'image'} ref={img} />
-      </div>
-    </PageLayout>
-  );
+  return {
+    title: t('title'),
+  };
+}
+
+// 首頁即登入頁。已登入的話會在 proxy 就被導向 /dashboard
+export default function Home() {
+  return <LoginForm />;
 }

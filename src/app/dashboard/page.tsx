@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 
 import PageLayout from '@/components/PageLayout';
 import ProfileCard from '@/components/ProfileCard';
-import SignOutButton from '@/components/SignOutButton';
 
 // 頁面層級的 metadata：會套用 layout 定義的 `%s | ...` 樣板
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,9 +24,6 @@ export default function Dashboard() {
       <div className="flex flex-col gap-4">
         <p>{t('description')}</p>
         <ProfileCard />
-        <div>
-          <SignOutButton />
-        </div>
       </div>
     </PageLayout>
   );
