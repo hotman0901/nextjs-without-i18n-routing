@@ -4,8 +4,8 @@
     "description": "Ein Next.js App Router Starter mit Sprachumschaltung über Cookies, ohne [locale]-Segment in der URL."
   },
   "Demo": {
-    "title": "Start",
-    "description": "Das ist die Startseite.",
+    "title": "Demo",
+    "description": "Beispiele für zustand, Parallax, VFX und Toast.",
     "navigateToAbout": "Zu Über uns navigieren",
     "increase": "erhöhen",
     "showToast": "Toast anzeigen"

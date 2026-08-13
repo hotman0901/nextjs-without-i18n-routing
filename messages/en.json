@@ -4,8 +4,8 @@
     "description": "A Next.js App Router starter with cookie-based locale switching, no [locale] segment in the URL."
   },
   "Demo": {
-    "title": "Home",
-    "description": "This is the home page.",
+    "title": "Demo",
+    "description": "Examples of zustand, parallax, VFX and toast.",
     "navigateToAbout": "Navigate to about",
     "increase": "increase",
     "showToast": "show toast"
