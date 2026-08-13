@@ -9,6 +9,7 @@
     "env-prod": "env-cmd -f .env.production next dev",
     "lint": "eslint src && prettier --check . && node node_modules/@typescript/native/bin/tsc",
     "format": "eslint src --fix && prettier --write .",
+    "fix": "yarn format && yarn lint",
     "test": "playwright test",
     "build": "next build",
     "start": "next start",
