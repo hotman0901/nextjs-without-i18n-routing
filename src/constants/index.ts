@@ -4,7 +4,7 @@ export const COOKIES = {
 };
 
 export const API = {
-  LOGIN: '/api/auth/login',
+  PROFILE: '/api/profile',
 };
 
 export const ROUTES = {
