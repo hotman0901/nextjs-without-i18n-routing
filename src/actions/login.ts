@@ -1,15 +1,19 @@
-'use server'
+'use server';
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import wait from 'waait';
 
-import { COOKIES, ROUTES } from '@/constants'
-import { type LoginInputs, type LoginResult,validateLogin } from '@/schemas/login'
+import { COOKIES, ROUTES } from '@/constants';
+import {
+  type LoginInputs,
+  type LoginResult,
+  validateLogin,
+} from '@/schemas/login';
 
 export const loginAction = async (
-  data: LoginInputs
+  data: LoginInputs,
 ): Promise<LoginResult | void> => {
   const t = await getTranslations('Validation');
 
@@ -37,4 +41,4 @@ export const loginAction = async (
 
   // redirect 會 throw，所以要放在所有回傳之後
   redirect(ROUTES.DASHBOARD);
-}
+};

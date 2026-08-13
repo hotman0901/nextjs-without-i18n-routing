@@ -19,5 +19,5 @@ export default function Custom404() {
       </div>
       <div className={styles.text}>{t('404')}</div>
     </div>
-  )
+  );
 }

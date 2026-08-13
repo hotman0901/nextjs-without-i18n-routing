@@ -8,7 +8,7 @@ export default function withPublicStatic(middleware: CustomMiddleware) {
   return async (
     req: NextRequest,
     event: NextFetchEvent,
-    response: NextResponse
+    response: NextResponse,
   ) => {
     // 靜態資源與 api 直接放行，不進入後續 middleware
     if (

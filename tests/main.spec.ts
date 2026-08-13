@@ -12,7 +12,9 @@ test.describe('without a token every other route is blocked', () => {
       await page.goto(path);
 
       await expect(page).toHaveURL(/\/$/);
-      await expect(page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: 'Sign in' }),
+      ).toBeVisible();
     });
   }
 });
@@ -68,7 +70,7 @@ test('rejects invalid credentials with a validation message', async ({
 
   await expect(page.getByText('The name is too long')).toBeVisible();
   await expect(
-    page.getByText('Password must be at least 6 characters')
+    page.getByText('Password must be at least 6 characters'),
   ).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
 });
@@ -84,7 +86,7 @@ test('translates validation messages', async ({ page, context }) => {
   await page.getByRole('button', { name: 'Anmelden' }).click();
 
   await expect(
-    page.getByText('Das Passwort muss mindestens 6 Zeichen lang sein')
+    page.getByText('Das Passwort muss mindestens 6 Zeichen lang sein'),
   ).toBeVisible();
 });
 

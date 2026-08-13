@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import type {PlaywrightTestConfig} from '@playwright/test';
-import {devices} from '@playwright/test';
+import type { PlaywrightTestConfig } from '@playwright/test';
+import { devices } from '@playwright/test';
 
 // Use a distinct port on CI to avoid conflicts during concurrent tests
 const PORT = process.env.CI ? 3001 : 3000;
@@ -12,17 +12,17 @@ const config: PlaywrightTestConfig = {
     {
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'
-    }
+    },
   ],
   fullyParallel: true,
   use: {
-    baseURL: `http://localhost:${PORT}`
+    baseURL: `http://localhost:${PORT}`,
   },
   webServer: {
     command: `PORT=${PORT} yarn start`,
     port: PORT,
-    reuseExistingServer: true
-  }
+    reuseExistingServer: true,
+  },
 };
 
 export default config;

@@ -49,7 +49,7 @@
   border: 2px solid;
 }
 .ears::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 267px;
   top: 0px;
@@ -70,7 +70,7 @@
   border: 2px solid;
 }
 .eyes::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0px;
   left: 120px;
@@ -81,7 +81,7 @@
   border: 2px solid;
 }
 .eyes::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 33px;
   left: 30px;
@@ -105,7 +105,7 @@
   transform: rotatez(10deg);
 }
 .mouth::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 7px;
   left: 11.5px;
@@ -142,7 +142,7 @@
   transform: rotatez(170deg);
 }
 .lines::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -22px;
   right: 120px;
@@ -158,7 +158,7 @@
 .four {
   color: white;
   font-size: 200px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 @keyframes anim {
   0% {

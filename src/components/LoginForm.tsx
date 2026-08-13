@@ -2,14 +2,14 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { useMemo,useState, useTransition } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { loginAction } from '@/actions/login';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { createLoginSchema,type LoginInputs } from '@/schemas/login';
+import { createLoginSchema, type LoginInputs } from '@/schemas/login';
 
 export default function LoginForm() {
   const t = useTranslations('Auth');
@@ -19,10 +19,7 @@ export default function LoginForm() {
   const [pending, startTransition] = useTransition();
 
   // schema 帶著翻譯建立，錯誤訊息才會跟著語系走
-  const schema = useMemo(
-    () => createLoginSchema(tValidation),
-    [tValidation]
-  );
+  const schema = useMemo(() => createLoginSchema(tValidation), [tValidation]);
 
   const {
     register,
@@ -78,14 +75,20 @@ export default function LoginForm() {
             {...register('password')}
           />
           {errors.password?.message && (
-            <p id="password-error" role="alert" className="text-sm text-red-400">
+            <p
+              id="password-error"
+              role="alert"
+              className="text-sm text-red-400"
+            >
               {errors.password.message}
             </p>
           )}
         </div>
 
         {serverError && (
-          <p role="alert" className="text-sm text-red-400">{serverError}</p>
+          <p role="alert" className="text-sm text-red-400">
+            {serverError}
+          </p>
         )}
 
         <Button disabled={pending}>{t('submit')}</Button>

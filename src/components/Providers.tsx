@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function Providers({ children }: React.PropsWithChildren) {
   // onblur 畫面不要觸發重新 call api。

@@ -1,19 +1,19 @@
-import '@/styles/globals.css'
+import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages, getTranslations } from 'next-intl/server';
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import { ReactNode } from 'react';
 import { Toaster } from 'sonner';
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
-})
+});
 
 import Providers from '@/components/Providers';
 
@@ -52,9 +52,9 @@ export default async function LocaleLayout({ children }: Props) {
   return (
     <html lang={locale}>
       <body
-          className={cn(
+        className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
+          fontSans.variable,
         )}
       >
         <Providers>

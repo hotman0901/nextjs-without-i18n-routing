@@ -10,17 +10,17 @@ Next.js App Router 的多語系 startkit，語系由 **cookie** 決定，網址�
 
 ## 技術棧
 
-| 分類 | 使用 |
-| --- | --- |
-| 框架 | Next.js 16.3（App Router + Turbopack） |
-| UI | React 19.2 |
-| 多語系 | next-intl 4.13 |
-| 樣式 | Tailwind CSS 4（CSS-first）+ shadcn/ui |
-| 表單 | react-hook-form + zod 4 |
-| 資料存取 | TanStack Query 5 |
-| 狀態管理 | zustand / @legendapp/state / nuqs（見下方說明） |
-| 測試 | Playwright |
-| 型別 | TypeScript 6，型別檢查另外用 TypeScript 7 原生編譯器 |
+| 分類     | 使用                                                 |
+| -------- | ---------------------------------------------------- |
+| 框架     | Next.js 16.3（App Router + Turbopack）               |
+| UI       | React 19.2                                           |
+| 多語系   | next-intl 4.13                                       |
+| 樣式     | Tailwind CSS 4（CSS-first）+ shadcn/ui               |
+| 表單     | react-hook-form + zod 4                              |
+| 資料存取 | TanStack Query 5                                     |
+| 狀態管理 | zustand / @legendapp/state / nuqs（見下方說明）      |
+| 測試     | Playwright                                           |
+| 型別     | TypeScript 6，型別檢查另外用 TypeScript 7 原生編譯器 |
 
 ## 快速開始
 
@@ -33,15 +33,15 @@ yarn dev
 
 ### 指令
 
-| 指令 | 說明 |
-| --- | --- |
-| `yarn dev` | 開發模式（Turbopack） |
-| `yarn build` | 正式建置 |
-| `yarn start` | 啟動正式版 |
-| `yarn lint` | ESLint + TypeScript 型別檢查 |
-| `yarn test` | Playwright 端對端測試 |
-| `yarn release` | standard-version 產生版號與 CHANGELOG |
-| `yarn env-dev` / `env-local` / `env-prod` | 指定 `.env` 檔啟動開發模式 |
+| 指令                                      | 說明                                  |
+| ----------------------------------------- | ------------------------------------- |
+| `yarn dev`                                | 開發模式（Turbopack）                 |
+| `yarn build`                              | 正式建置                              |
+| `yarn start`                              | 啟動正式版                            |
+| `yarn lint`                               | ESLint + TypeScript 型別檢查          |
+| `yarn test`                               | Playwright 端對端測試                 |
+| `yarn release`                            | standard-version 產生版號與 CHANGELOG |
+| `yarn env-dev` / `env-local` / `env-prod` | 指定 `.env` 檔啟動開發模式            |
 
 ## 專案結構
 

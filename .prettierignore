@@ -1,0 +1,10 @@
+node_modules
+.next
+yarn.lock
+pnpm-lock.yaml
+playwright-report
+test-results
+
+# Next 會自行改寫這兩個檔案，交給 Prettier 管只會來回衝突
+next-env.d.ts
+tsconfig.json

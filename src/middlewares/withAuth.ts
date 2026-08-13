@@ -1,14 +1,18 @@
-import type { NextFetchEvent, NextRequest, NextResponse as NextResponseType } from 'next/server';
+import type {
+  NextFetchEvent,
+  NextRequest,
+  NextResponse as NextResponseType,
+} from 'next/server';
 import { NextResponse } from 'next/server';
 
-import { COOKIES, PUBLIC_ROUTES,ROUTES } from '@/constants';
-import { CustomMiddleware } from '@/middlewares/chain'
+import { COOKIES, PUBLIC_ROUTES, ROUTES } from '@/constants';
+import { CustomMiddleware } from '@/middlewares/chain';
 
 export default function withAuth(middleware: CustomMiddleware) {
   return async (
     request: NextRequest,
     event: NextFetchEvent,
-    response: NextResponseType
+    response: NextResponseType,
   ) => {
     // proxy 執行環境要用 request.cookies，next/headers 的 cookies() 在這裡不可用
     const token = request.cookies.get(COOKIES.TOKEN)?.value;

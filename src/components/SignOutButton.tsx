@@ -14,7 +14,11 @@ export default function SignOutButton() {
     <Button
       variant="outline"
       disabled={isPending}
-      onClick={() => startTransition(() => { logoutAction() })}
+      onClick={() =>
+        startTransition(() => {
+          logoutAction();
+        })
+      }
     >
       {t('signOut')}
     </Button>

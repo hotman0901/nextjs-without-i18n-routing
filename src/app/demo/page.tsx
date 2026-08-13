@@ -8,7 +8,7 @@ import SimpleParallax from 'simple-parallax-js';
 import { toast } from 'sonner';
 
 import PageLayout from '@/components/PageLayout';
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button';
 import { useBearStore } from '@/store/count';
 
 export default function Demo() {
@@ -22,13 +22,15 @@ export default function Demo() {
     if (img.current) {
       vfx.add(img.current, { shader: 'rgbShift', overflow: 100 });
     }
-  }, [])
+  }, []);
   return (
     <PageLayout title={t('title')}>
       <div style={{ height: '2000px' }}>
         <p>{t('description')}</p>
         <Link href="/about">{t('navigateToAbout')}</Link>
-        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">store: {bears}</h3>
+        <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+          store: {bears}
+        </h3>
         <Button onClick={() => increase()}>{t('increase')}</Button>
         <Button onClick={() => toast.error(t('showToast'))}>
           {t('showToast')}

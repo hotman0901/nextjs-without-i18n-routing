@@ -12,8 +12,7 @@ export const ROUTES = {
   LOGIN: '/',
   DASHBOARD: '/dashboard',
   DEMO: '/demo',
-  ABOUT: '/about'
-
+  ABOUT: '/about',
 };
 
 /**
