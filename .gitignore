@@ -11,7 +11,3 @@ tsconfig.tsbuildinfo
 
 # Next 自動產生，內容會在 dev 與 build 之間來回變動
 next-env.d.ts
-
-# Next 16 的 agentRules 產生，可用 next.config.js 的 agentRules: false 關閉
-AGENTS.md
-CLAUDE.md
