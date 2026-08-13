@@ -11,6 +11,9 @@ export const ROUTES = {
   // 首頁就是登入頁
   LOGIN: '/',
   DASHBOARD: '/dashboard',
+  DEMO: '/demo',
+  ABOUT: '/about'
+
 };
 
 /**
