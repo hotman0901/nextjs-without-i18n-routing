@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "title": "Next.js i18n Starter",
+    "description": "Ein Next.js App Router Starter mit Sprachumschaltung über Cookies, ohne [locale]-Segment in der URL."
+  },
   "Index": {
     "title": "Start",
     "description": "Das ist die Startseite.",
