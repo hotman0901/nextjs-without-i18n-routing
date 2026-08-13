@@ -47,8 +47,9 @@ yarn dev
 
 ```
 src/
-├─ actions/        Server Actions（locale 切換、登入）
+├─ actions/        Server Actions（locale 切換、登入、登出）
 ├─ app/            App Router 頁面
+│  ├─ api/profile/    Route Handler 範例（受 token 保護）
 │  ├─ error.tsx        錯誤邊界
 │  ├─ global-error.tsx root layout 出錯時的邊界
 │  ├─ loading.tsx      載入狀態
@@ -78,6 +79,14 @@ src/
 1. 建立 `messages/{locale}.json`
 2. 把語系代碼加進 [`src/i18n/routing.ts`](src/i18n/routing.ts) 的 `LOCALES`
 
+### 表單驗證訊息也會翻譯
+
+[`createLoginSchema`](src/schemas/login.ts) 接受一個翻譯函式來建立 zod schema，所以 client（`useTranslations`）和 Server Action（`getTranslations`）共用同一份驗證規則，而錯誤訊息會跟著語系走。
+
+```ts
+const schema = useMemo(() => createLoginSchema(tValidation), [tValidation]);
+```
+
 ### 翻譯 key 有型別檢查
 
 [`src/types/next-intl.d.ts`](src/types/next-intl.d.ts) 透過 next-intl 的 `AppConfig` 宣告了訊息型別，所以：
@@ -86,11 +95,27 @@ src/
 - 打錯 key 會在 `yarn lint` 直接失敗
 - 其他語系檔缺少 key 也會被型別檢查抓到
 
-## 路由保護
+## 認證流程
 
-[`src/middlewares/withAuth.ts`](src/middlewares/withAuth.ts) 會檢查 `tokenJWT` cookie。凡是符合 [`PROTECTED_URL`](src/constants/index.ts) 的路徑，沒有 token 就導向 `/login`。`/dashboard` 是現成的示範。
+完整的一圈：
+
+1. `/login` 送出表單 → Server Action [`loginAction`](src/actions/login.ts) 驗證
+2. 驗證通過 → 寫入 `httpOnly` 的 `tokenJWT` cookie → `redirect('/dashboard')`
+3. [`withAuth`](src/middlewares/withAuth.ts) 檢查每個符合 [`PROTECTED_URL`](src/constants/index.ts) 的請求，沒有 token 就導回 `/login`
+4. `/dashboard` 用 react-query 打 [`/api/profile`](src/app/api/profile/route.ts) 取回使用者資料
+5. 登出 → [`logoutAction`](src/actions/logout.ts) 刪除 cookie 並導回 `/login`
+
+token 是假的（格式為 `fake-jwt-for-{name}`），真實專案請換成後端簽發的 JWT 並驗證簽章。cookie 設為 `httpOnly`，所以 client 端的 JavaScript 讀不到。
 
 middleware 以鏈狀組合（[`chain.ts`](src/middlewares/chain.ts)），response 物件由鏈的進入點建立一次後往下傳遞，所以每一層對 response 做的修改都會保留。
+
+注意 [`proxy.ts`](src/proxy.ts) 的 `matcher` 排除了 `/api`，所以 Route Handler 要自己檢查 token —— `/api/profile` 沒帶 token 會回 401。
+
+## 資料存取
+
+[`Providers.tsx`](src/components/Providers.tsx) 設定了 TanStack Query，包含 `ReactQueryStreamedHydration`（讓 SSR 期間開始的查詢能串流到 client）與開發模式的 Devtools。
+
+使用範例在 [`ProfileCard.tsx`](src/components/ProfileCard.tsx)：一個 `useQuery` 打自家的 Route Handler，並處理 pending / error 狀態。
 
 ## 樣式
 
@@ -104,9 +129,9 @@ Tailwind 4 採 CSS-first 設定，**沒有 `tailwind.config.ts`**。主題（色
 
 - `zustand` — 一般的 client 全域狀態（[`src/store/`](src/store/)）
 - `@legendapp/state` — 細粒度響應式，範例在 [`/about`](src/app/about/page.tsx)
-- `nuqs` — 把狀態存在 URL query string
+- `nuqs` — 把狀態存在 URL query string（目前只掛了 `NuqsAdapter`，尚無使用範例）
 
-實際專案請挑一套。
+實際專案請挑一套。另外 [`store/auth.ts`](src/store/auth.ts) 目前沒有被任何元件使用 —— 認證狀態的真實來源是 cookie，不是這個 store。
 
 ## 已知取捨
 
