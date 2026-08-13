@@ -8,6 +8,7 @@ import HashLoader from 'react-spinners/HashLoader';
 import { loginAction } from '@/actions/login';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { LoginFormSchema,type LoginInputs } from '@/schemas/login';
 
 export default function Login() {
@@ -43,27 +44,41 @@ export default function Login() {
   return (
     <section className="flex gap-6">
       <form action={action} className="flex flex-1 flex-col gap-4 sm:w-1/2">
-        <Input
-          placeholder="name"
-          className="rounded-lg"
-          {...register('name')}
-        />
-        {errors.name?.message && (
-          <p className="text-sm text-red-400">{errors.name.message}</p>
-        )}
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            className="rounded-lg"
+            aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
+            {...register('name')}
+          />
+          {errors.name?.message && (
+            <p id="name-error" role="alert" className="text-sm text-red-400">
+              {errors.name.message}
+            </p>
+          )}
+        </div>
 
-        <Input
-          type="password"
-          placeholder="password"
-          className="rounded-lg"
-          {...register('password')}
-        />
-        {errors.password?.message && (
-          <p className="text-sm text-red-400">{errors.password.message}</p>
-        )}
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="password">Password</Label>
+          <Input
+            id="password"
+            type="password"
+            className="rounded-lg"
+            aria-invalid={!!errors.password}
+            aria-describedby={errors.password ? 'password-error' : undefined}
+            {...register('password')}
+          />
+          {errors.password?.message && (
+            <p id="password-error" role="alert" className="text-sm text-red-400">
+              {errors.password.message}
+            </p>
+          )}
+        </div>
 
         {serverError && (
-          <p className="text-sm text-red-400">{serverError}</p>
+          <p role="alert" className="text-sm text-red-400">{serverError}</p>
         )}
 
         <Button disabled={pending}>Submit</Button>
