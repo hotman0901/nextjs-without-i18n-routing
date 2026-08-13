@@ -38,10 +38,17 @@ yarn dev
 | `yarn dev`                                | 開發模式（Turbopack）                 |
 | `yarn build`                              | 正式建置                              |
 | `yarn start`                              | 啟動正式版                            |
-| `yarn lint`                               | ESLint + TypeScript 型別檢查          |
+| `yarn lint`                               | ESLint + Prettier 檢查 + 型別檢查     |
+| `yarn format`                             | ESLint 自動修正後再跑 Prettier        |
 | `yarn test`                               | Playwright 端對端測試                 |
 | `yarn release`                            | standard-version 產生版號與 CHANGELOG |
 | `yarn env-dev` / `env-local` / `env-prod` | 指定 `.env` 檔啟動開發模式            |
+
+### 程式碼格式
+
+存檔時會自動整理：VS Code 先跑 ESLint 的 `source.fixAll`（排序 import），再跑 Prettier（處理空白）。這個順序是必要的 —— `eslint-plugin-simple-import-sort` 排序 named import 時不會補空格，會留下 `{ type Locale,LOCALES }`，要靠 Prettier 收尾。
+
+需要安裝 [.vscode/extensions.json](.vscode/extensions.json) 推薦的 Prettier 與 ESLint 擴充套件；用其他編輯器的話，手動跑 `yarn format` 效果相同。
 
 ## 專案結構
 

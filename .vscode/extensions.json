@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    // settings.json 的 formatOnSave 需要這兩個才會生效
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+
+    "bradlc.vscode-tailwindcss",
+    "lokalise.i18n-ally"
+  ]
+}
